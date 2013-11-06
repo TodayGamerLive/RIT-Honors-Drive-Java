@@ -118,7 +118,9 @@ public class DriveSampleServlet extends
 		resp.setStatus(200);
 		resp.setContentType("text/html");
 		PrintWriter writer = resp.getWriter();
-
+		
+		writer.println("<h1>Listing Directory Contents</h1>");
+		
 		List<File> files = new ArrayList<File>();
 		for (String id : driveState.ids)
 		{
