@@ -110,21 +110,27 @@ public class DriveSampleServlet extends
 				Utils.JSON_FACTORY, credential).setApplicationName(
 				APPLICATION_NAME).build();
 
-		// Add the code to make an API call here.
-		
-		State driveState = new State(req.getParameter("state"));
-		
-		// Send the results as the response
 		resp.setStatus(200);
 		resp.setContentType("text/html");
 		PrintWriter writer = resp.getWriter();
 		
-		writer.println("<h1>Listing Directory Contents</h1>");
-		
-		List<File> files = new ArrayList<File>();
-		for (String id : driveState.ids)
+		String stateJson = req.getParameter("state");
+		if (stateJson != null)
 		{
-			files.addAll(getChildren(drive, id, writer));
+			State driveState = new State();
+		
+			// Send the results as the response
+			writer.println("<h1>Listing Directory Contents</h1>");
+			
+			List<File> files = new ArrayList<File>();
+			for (String id : driveState.ids)
+			{
+				files.addAll(getChildren(drive, id, writer));
+			}
+		}
+		else
+		{
+			writer.println("Please use google drive to open a folder (or folders!) you want processed.");
 		}
 	}
 
