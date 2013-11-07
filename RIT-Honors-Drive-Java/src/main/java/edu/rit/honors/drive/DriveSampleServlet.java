@@ -117,7 +117,7 @@ public class DriveSampleServlet extends
 		String stateJson = req.getParameter("state");
 		if (stateJson != null)
 		{
-			State driveState = new State();
+			State driveState = new State(stateJson);
 		
 			// Send the results as the response
 			writer.println("<h1>Listing Directory Contents</h1>");
